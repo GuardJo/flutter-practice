@@ -1,5 +1,7 @@
 # Chapter01. Variables
 
+
+
 # 1. Dart의 진입점
 
 여러 객체지향 언어에서와 마찬가지로 Dart 또한 프로그램 실행 시 최초 진입하는 메소드가 사전에 약속되어 있다.
@@ -32,7 +34,7 @@ void main() {
 
 - 단, 위와 같이 String으로 이미 추론된 name이라는 변수는 이후 같은 String 타입으로만 값을 변경할 수 있음
     
-    ![이미 추론된 var 변수 내 다른 타입을 주입할 경우](docs\images\chapter01\Untitled.png)
+    ![이미 추론된 var 변수 내 다른 타입을 주입할 경우](images/chapter01/Untitled.png)
     
     이미 추론된 var 변수 내 다른 타입을 주입할 경우
     
@@ -50,7 +52,7 @@ google에서 제공하는 Dart의 스타일 가이드라인에 따르면 var 키
 
 이때 아래와 같이 var 타입의 변수에 값을 입력하지 않았을 경우에는 dynamic 변수로 취급된다.
 
-![추론되지 않은 var 변수에 대한 실제 반환 타입(dynamic)](docs\images\chapter01\Untitled%201.png)
+![추론되지 않은 var 변수에 대한 실제 반환 타입(dynamic)](images/chapter01/Untitled%201.png)
 
 추론되지 않은 var 변수에 대한 실제 반환 타입(dynamic)
 
@@ -76,7 +78,7 @@ void main() {
 
 Dart에서는 기본적으로 모든 변수 타입들은 nullable하지 않는다. 허나 null이라는 값은 하나의 주요 요소로 사용할 수 있는 값이다보니, “?” 키워드를 사용해서 해당 변수에 null이 올 수 있음을 명시하여 null 값에 대한 대처를 할 수 있게 지원한다.
 
-![null을 허용하지 않는 변](docs\images\chapter01\Untitled%202.png)
+![null을 허용하지 않는 변](images/chapter01/Untitled%202.png)
 
 null을 허용하지 않는 변
 
@@ -93,7 +95,7 @@ void main() {
 
 Dart에서는 nullable 타입으로 지정된 경우 런타임이 아닌 컴파일 시점에 해당 요소들을 참조할 경우  아래와 같은 경고를 제공한다.
 
-![nullable한 String 변수에서 함수 사용 시](docs\images\chapter01\Untitled%203.png)
+![nullable한 String 변수에서 함수 사용 시](images/chapter01/Untitled%203.png)
 
 nullable한 String 변수에서 함수 사용 시
 
@@ -154,7 +156,7 @@ void main() {
 
 - 또한 late 키워드가 붙은 변수의 경우 값이 할당되기 전에 관련 변수를 사용할 경우 Dart에서 사용할 수 없다는 경고 메시지를 전달해준다.
     
-    ![late 변수에 값이 할당안되어 있을 경우](docs\images\chapter01\Untitled%204.png)
+    ![late 변수에 값이 할당안되어 있을 경우](images/chapter01/Untitled%204.png)
     
     late 변수에 값이 할당안되어 있을 경우
     
@@ -188,6 +190,6 @@ const 키워드 변수의 경우, 컴파일 시점에 값을 할당하기에 컴
 
 예를 들어 아래와 같이 `DateTime.now()` 를 통해 현재 실행 시점 시간을 구할 경우, const 변수는 실행 시점이 아닌 컴파일 시점에 값을 할당하기에 `DateTime.now()` 값을 가져오지 못하여, 아래와 같이 경고를 보여준다.
 
-![Untitled](docs\images\chapter01\Untitled%205.png)
+![Untitled](images/chapter01/Untitled%205.png)
 
 </aside>
