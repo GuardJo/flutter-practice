@@ -26,7 +26,7 @@ javascript나 kotlin 등 일부 언어에서 사용하는 var 키워드와 같�
 void main() {
   print("Hello Dart");
 
-  **var name = "guardjo";**
+  var name = "guardjo";
 }
 ```
 
@@ -38,13 +38,10 @@ void main() {
     
     이미 추론된 var 변수 내 다른 타입을 주입할 경우
     
-
-<aside>
-💡 **var 키워드를 통한 묵시적 타입 추론과 명시적 타입 지정에 대한 견해**
-
-google에서 제공하는 Dart의 스타일 가이드라인에 따르면 var 키워드 같은 경우 함수나 메소드 내에서 변수를 선언할 때 주로 사용하길 권장하며 전역 변수와 같이 class 내 메소드나 함수 상위에 선언되는 변수들에 대해서는 String과 같은 명시적인 타입을 지정하도록 권장하고 있다.
-
-</aside>
+> [!NOTE]
+> **var 키워드를 통한 묵시적 타입 추론과 명시적 타입 지정에 대한 견해**
+>  
+>  google에서 제공하는 Dart의 스타일 가이드라인에 따르면 var 키워드 같은 경우 함수나 메소드 내에서 변수를 선언할 때 주로 사용하길 권장하며 전역 변수와 같이 class 내 메소드나 함수 상위에 선언되는 변수들에 대해서는 String과 같은 명시적인 타입을 지정하도록 권장하고 있다.
 
 ## 2-2. Dynamic 키워드
 
@@ -78,9 +75,7 @@ void main() {
 
 Dart에서는 기본적으로 모든 변수 타입들은 nullable하지 않는다. 허나 null이라는 값은 하나의 주요 요소로 사용할 수 있는 값이다보니, “?” 키워드를 사용해서 해당 변수에 null이 올 수 있음을 명시하여 null 값에 대한 대처를 할 수 있게 지원한다.
 
-![null을 허용하지 않는 변](images/chapter01/Untitled%202.png)
-
-null을 허용하지 않는 변
+![null을 허용하지 않는 변수](images/chapter01/Untitled%202.png)
 
 ```dart
 void main() {
@@ -91,13 +86,12 @@ void main() {
 
 ? 키워드를 사용하지 않았을 경우에는 기본적인 타입으로써 nullable을 지원하지 않는다. 이때 해당 변수 타입 뒤에 ? 키워드를 사용함으로써 해당 변수를 nullable하게 지정할 수 있다.
 
-**Null safety 기능 제공**
+
+### Null safety 기능 제공
 
 Dart에서는 nullable 타입으로 지정된 경우 런타임이 아닌 컴파일 시점에 해당 요소들을 참조할 경우  아래와 같은 경고를 제공한다.
 
 ![nullable한 String 변수에서 함수 사용 시](images/chapter01/Untitled%203.png)
-
-nullable한 String 변수에서 함수 사용 시
 
 위와 같은 경우에 대한 Null 처리는 아래와 같이 처리할 수 있다.
 
@@ -126,7 +120,7 @@ Java의 final 키워드 혹은 Javascript의 const 키워드 등과 같은 기�
 ```dart
 void main() {
   // final 키워드를 통한 상수 할당
-  **final** String constValue = "const";
+  final String constValue = "const";
 
   print(constValue);
 }
@@ -144,7 +138,7 @@ Dart에서는 var 혹은 final 키워드를 사용하는 변수에 값을 나중
 void main() {
   // late 키워드를 통한 지연 할당
 
-  **late** final String lateValue;
+  late final String lateValue;
 
   lateValue = "lateValue";
 
@@ -183,13 +177,10 @@ void main() {
 - ex) API 키값을 저장해두는 변수
     - `const String API_KEY = “test-key”;`
 
-<aside>
-💡 **const 키워드 변수에 할당할 수 없는 요소**
-
-const 키워드 변수의 경우, 컴파일 시점에 값을 할당하기에 컴파일 시점에 알 수 없는 데이터들은 const 변수의 값으로 할당 할 수 없다.
-
-예를 들어 아래와 같이 `DateTime.now()` 를 통해 현재 실행 시점 시간을 구할 경우, const 변수는 실행 시점이 아닌 컴파일 시점에 값을 할당하기에 `DateTime.now()` 값을 가져오지 못하여, 아래와 같이 경고를 보여준다.
-
-![Untitled](images/chapter01/Untitled%205.png)
-
-</aside>
+> [!TIP] 
+> **const 키워드 변수에 할당할 수 없는 요소**
+> 
+> const 키워드 변수의 경우, 컴파일 시점에 값을 할당하기에 컴파일 시점에 알 수 없는 데이터들은 const 변수의 값으로 할당 할 수 없다.
+> 
+> 예를 들어 아래와 같이 `DateTime.now()` 를 통해 현재 실행 시점 시간을 구할 경우, const 변수는 실행 시점이 아닌 컴파일 시점에 값을 할당하기에 `DateTime.now()` 값을 가져오지 못하여, 아래와 같이 경고를 보여준다.
+> ![Untitled](images/chapter01/Untitled%205.png)
