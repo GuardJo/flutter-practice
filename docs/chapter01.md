@@ -26,7 +26,7 @@ javascript나 kotlin 등 일부 언어에서 사용하는 var 키워드와 같�
 void main() {
   print("Hello Dart");
 
-  **var name = "guardjo";**
+  var name = "guardjo";
 }
 ```
 
@@ -126,7 +126,7 @@ Java의 final 키워드 혹은 Javascript의 const 키워드 등과 같은 기�
 ```dart
 void main() {
   // final 키워드를 통한 상수 할당
-  **final** String constValue = "const";
+  final String constValue = "const";
 
   print(constValue);
 }
@@ -144,7 +144,7 @@ Dart에서는 var 혹은 final 키워드를 사용하는 변수에 값을 나중
 void main() {
   // late 키워드를 통한 지연 할당
 
-  **late** final String lateValue;
+  late final String lateValue;
 
   lateValue = "lateValue";
 
