@@ -180,7 +180,7 @@ void main() {
 - ex) API 키값을 저장해두는 변수
     - `const String API_KEY = “test-key”;`
 
-> [!tip] const 키워드 변수에 할당할 수 없는 요소
+> [!TIP] const 키워드 변수에 할당할 수 없는 요소
 > 
 > const 키워드 변수의 경우, 컴파일 시점에 값을 할당하기에 컴파일 시점에 알 수 없는 데이터들은 const 변수의 값으로 할당 할 수 없다.
 > 
