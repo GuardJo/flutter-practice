@@ -1,4 +1,4 @@
-void main() {
+void chapter01() {
   print("Hello Dart");
 
   // var 키워드 연습
@@ -47,4 +47,58 @@ void main() {
   print(API_KEY);
 
   // const RUNNING = DateTime.now();
+}
+
+void main() {
+  // 기본 타입
+  String str = "문자열";
+  bool boolean = false;
+  int integer = 1;
+  double d = 1.1;
+
+  num number = 1;
+  number = 1.1;
+
+  number.abs();
+
+  // List 타입
+  var lists = [1, 2, 3, 4];
+  // List<int> lists = [1, 2, 3, 4];
+  var giveMeFive = true;
+  // collection if
+  var lists2 = [1, 2, 3, 4, if (giveMeFive) 5];
+  print(lists2);
+
+  var name = "Tester";
+  var age = 28;
+
+  // String interpolation
+  var profile = "Name : $name, Age : $age, KoreanAge : ${age + 1}";
+  print(profile);
+
+  // Collection for
+  var oldData = ["file1", "file2"];
+  var newData = [
+    "file3",
+    "file4",
+    for (var fileName in oldData) "old_${fileName}"
+  ];
+
+  print(newData);
+
+  // Map 타입
+  var map1 = {"name": "tester", "age": 28};
+  Map<String, String> map2 = {"key1": "value1", "key2": "Value2"};
+  Map<List<int>, String> map3 = {
+    [1, 2, 3]: "One Twon Three",
+    [4, 5]: "Four, Five"
+  };
+  print(map2["key1"]);
+
+  // Set 타입
+  var set1 = {1, 2, 3, 4};
+  // Set<int> set1 = {1, 2, 3, 4};
+
+  set1.add(1);
+  print(set1);
 }
