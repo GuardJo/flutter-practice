@@ -5,3 +5,7 @@
 [Chapter00. Dart](docs/chapter00.md)
 
 [Chapter01. Variables](docs/chapter01.md)
+
+[Chapter02. DataTypes](docs/chapter02.md)
+
+[Chapter03. Functions](docs/chapter03.md)
