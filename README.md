@@ -9,3 +9,5 @@
 [Chapter02. DataTypes](docs/chapter02.md)
 
 [Chapter03. Functions](docs/chapter03.md)
+
+[Chapter04. Classes](docs/chapter04.md)
