@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(RootWidget());
+  runApp(const RootWidget());
 }
 
 class RootWidget extends StatelessWidget {
+  const RootWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color(0xff181818),
+        backgroundColor: const Color(0xff181818),
         body: Padding(
-          padding: EdgeInsets.all(30),
+          padding: const EdgeInsets.all(30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -21,7 +23,7 @@ class RootWidget extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
+                      const Text(
                         "Hey Kyeongho",
                         style: TextStyle(
                           color: Colors.white,
@@ -40,7 +42,7 @@ class RootWidget extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Text(
@@ -50,10 +52,10 @@ class RootWidget extends StatelessWidget {
                   fontSize: 20,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              Text(
+              const Text(
                 "\$5 194 382",
                 style: TextStyle(
                   color: Colors.white,
@@ -61,13 +63,17 @@ class RootWidget extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
                 children: [
                   Container(
-                    child: Padding(
+                    decoration: BoxDecoration(
+                      color: Colors.amber,
+                      borderRadius: BorderRadius.circular(45),
+                    ),
+                    child: const Padding(
                       padding: EdgeInsets.symmetric(
                         vertical: 20,
                         horizontal: 50,
@@ -79,17 +85,17 @@ class RootWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    decoration: BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.circular(45),
-                    ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 30,
                   ),
                   Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(45),
+                    ),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         vertical: 20,
                         horizontal: 50,
                       ),
@@ -100,10 +106,6 @@ class RootWidget extends StatelessWidget {
                           color: Colors.white.withOpacity(0.9),
                         ),
                       ),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(45),
                     ),
                   ),
                 ],
