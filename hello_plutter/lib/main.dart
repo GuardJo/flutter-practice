@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_plutter/widgets/button.dart';
 
 void main() {
   runApp(const RootWidget());
@@ -68,45 +69,18 @@ class RootWidget extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.circular(45),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 20,
-                        horizontal: 50,
-                      ),
-                      child: Text(
-                        "Transfer",
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
+                  const MainButton(
+                    bgColor: Colors.amber,
+                    text: "Transfer",
+                    textColor: Colors.black,
                   ),
                   const SizedBox(
                     width: 30,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(45),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 20,
-                        horizontal: 50,
-                      ),
-                      child: Text(
-                        "Request",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white.withOpacity(0.9),
-                        ),
-                      ),
-                    ),
+                  MainButton(
+                    bgColor: Colors.white.withOpacity(0.1),
+                    text: "Request",
+                    textColor: Colors.white.withOpacity(0.9),
                   ),
                 ],
               )
