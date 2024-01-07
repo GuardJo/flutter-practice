@@ -116,14 +116,16 @@ class RootWidget extends StatelessWidget {
                   color: Color.fromARGB(255, 29, 29, 29),
                   borderRadius: BorderRadius.all(Radius.circular(25)),
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
+                clipBehavior: Clip.hardEdge,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
                     vertical: 20,
                     horizontal: 25,
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
+                      const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -156,9 +158,20 @@ class RootWidget extends StatelessWidget {
                                 ),
                               ),
                             ],
-                          )
+                          ),
                         ],
-                      )
+                      ),
+                      Transform.scale(
+                        scale: 2.5,
+                        child: Transform.translate(
+                          offset: const Offset(0, 10),
+                          child: const Icon(
+                            Icons.euro_sharp,
+                            color: Colors.white,
+                            size: 70,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
