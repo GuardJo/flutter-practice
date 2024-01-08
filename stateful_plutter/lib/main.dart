@@ -23,6 +23,14 @@ class _RootWidgetState extends State<RootWidget> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        textTheme: TextTheme(
+          titleMedium: TextStyle(
+            fontSize: 40,
+            color: Colors.blue.shade300,
+          ),
+        ),
+      ),
       home: Scaffold(
         backgroundColor: Colors.amber.shade50,
         body: Center(
@@ -30,28 +38,44 @@ class _RootWidgetState extends State<RootWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
-                "Click Count!",
-                style: TextStyle(
-                  fontSize: 40,
-                ),
-              ),
-              Text(
-                "$count",
-                style: const TextStyle(
-                  fontSize: 30,
-                ),
-              ),
-              IconButton(
-                onPressed: onClick,
-                iconSize: 30,
-                icon: const Icon(
-                  Icons.add_box_rounded,
-                ),
+              Column(
+                children: [
+                  const CountTitle(),
+                  Text(
+                    "$count",
+                    style: const TextStyle(
+                      fontSize: 30,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: onClick,
+                    iconSize: 30,
+                    icon: const Icon(
+                      Icons.add_box_rounded,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CountTitle extends StatelessWidget {
+  const CountTitle({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "Click Count!",
+      style: TextStyle(
+        fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+        color: Theme.of(context).textTheme.titleMedium?.color,
       ),
     );
   }
