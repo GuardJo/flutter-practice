@@ -12,6 +12,7 @@ class MainWidget extends StatefulWidget {
 class _MainWidgetState extends State<MainWidget> {
   int totalSeconds = 1500; // 25분
   late Timer timer;
+  bool isRunning = false;
 
   void onTick(Timer timer) {
     setState(() {
@@ -20,11 +21,18 @@ class _MainWidgetState extends State<MainWidget> {
   }
 
   void onStartTimer() {
-    timer = Timer.periodic(
-        const Duration(
-          seconds: 1,
-        ),
-        onTick);
+    timer = Timer.periodic(const Duration(seconds: 1), onTick);
+
+    setState(() {
+      isRunning = true;
+    });
+  }
+
+  void onPauseTimer() {
+    timer.cancel();
+    setState(() {
+      isRunning = false;
+    });
   }
 
   @override
@@ -52,9 +60,11 @@ class _MainWidgetState extends State<MainWidget> {
             flex: 2,
             child: Center(
               child: IconButton(
-                onPressed: onStartTimer,
+                onPressed: isRunning ? onPauseTimer : onStartTimer,
                 icon: Icon(
-                  Icons.play_circle_outline,
+                  isRunning
+                      ? Icons.pause_circle_outline
+                      : Icons.play_circle_outline,
                   color: Theme.of(context).cardColor,
                 ),
                 iconSize: 120,
