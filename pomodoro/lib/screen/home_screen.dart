@@ -10,13 +10,22 @@ class MainWidget extends StatefulWidget {
 }
 
 class _MainWidgetState extends State<MainWidget> {
-  int totalSeconds = 1500; // 25분
+  static const int defaultSeconds = 1500;
+  int totalSeconds = defaultSeconds; // 25분
   late Timer timer;
   bool isRunning = false;
+  int totalPomondoro = 0;
 
   void onTick(Timer timer) {
     setState(() {
-      --totalSeconds;
+      if (totalSeconds == 0) {
+        totalSeconds = defaultSeconds;
+        timer.cancel();
+        ++totalPomondoro;
+        isRunning = false;
+      } else {
+        --totalSeconds;
+      }
     });
   }
 
@@ -35,6 +44,15 @@ class _MainWidgetState extends State<MainWidget> {
     });
   }
 
+  String formatTime(int seconds) {
+    var duration = Duration(seconds: seconds);
+    var secondsFormat = "${duration.inSeconds % 60}";
+    secondsFormat =
+        secondsFormat.length < 2 ? "0$secondsFormat" : secondsFormat;
+
+    return "${duration.inMinutes}:$secondsFormat";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +64,7 @@ class _MainWidgetState extends State<MainWidget> {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                "$totalSeconds",
+                formatTime(totalSeconds),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Theme.of(context).cardColor,
@@ -112,7 +130,7 @@ class _MainWidgetState extends State<MainWidget> {
                           Flexible(
                             flex: 2,
                             child: Text(
-                              "0 / 1",
+                              "$totalPomondoro",
                               style: TextStyle(
                                 color: Theme.of(context)
                                     .textTheme
