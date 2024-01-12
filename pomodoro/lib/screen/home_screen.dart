@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class MainWidget extends StatefulWidget {
@@ -8,6 +10,23 @@ class MainWidget extends StatefulWidget {
 }
 
 class _MainWidgetState extends State<MainWidget> {
+  int totalSeconds = 1500; // 25분
+  late Timer timer;
+
+  void onTick(Timer timer) {
+    setState(() {
+      --totalSeconds;
+    });
+  }
+
+  void onStartTimer() {
+    timer = Timer.periodic(
+        const Duration(
+          seconds: 1,
+        ),
+        onTick);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +38,7 @@ class _MainWidgetState extends State<MainWidget> {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                "25:00",
+                "$totalSeconds",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Theme.of(context).cardColor,
@@ -33,7 +52,7 @@ class _MainWidgetState extends State<MainWidget> {
             flex: 2,
             child: Center(
               child: IconButton(
-                onPressed: () => {}, // TODO 기능 구현
+                onPressed: onStartTimer,
                 icon: Icon(
                   Icons.play_circle_outline,
                   color: Theme.of(context).cardColor,
