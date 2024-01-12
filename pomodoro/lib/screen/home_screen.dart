@@ -44,6 +44,13 @@ class _MainWidgetState extends State<MainWidget> {
     });
   }
 
+  void onReset() {
+    onPauseTimer();
+    setState(() {
+      totalSeconds = defaultSeconds;
+    });
+  }
+
   String formatTime(int seconds) {
     var duration = Duration(seconds: seconds);
     var secondsFormat = "${duration.inSeconds % 60}";
@@ -76,17 +83,36 @@ class _MainWidgetState extends State<MainWidget> {
           ),
           Flexible(
             flex: 2,
-            child: Center(
-              child: IconButton(
-                onPressed: isRunning ? onPauseTimer : onStartTimer,
-                icon: Icon(
-                  isRunning
-                      ? Icons.pause_circle_outline
-                      : Icons.play_circle_outline,
-                  color: Theme.of(context).cardColor,
+            child: Column(
+              children: [
+                Center(
+                  child: IconButton(
+                    onPressed: isRunning ? onPauseTimer : onStartTimer,
+                    icon: Icon(
+                      isRunning
+                          ? Icons.pause_circle_outline
+                          : Icons.play_circle_outline,
+                      color: Theme.of(context).cardColor,
+                    ),
+                    iconSize: 120,
+                  ),
                 ),
-                iconSize: 120,
-              ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith(
+                        (states) => Theme.of(context).cardColor),
+                  ),
+                  onPressed: onReset,
+                  child: Text(
+                    "RESET",
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.displayLarge?.color,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
           Flexible(
@@ -95,8 +121,8 @@ class _MainWidgetState extends State<MainWidget> {
               decoration: BoxDecoration(
                 color: Theme.of(context).cardColor,
                 borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(25),
-                  topRight: Radius.circular(25),
+                  topLeft: Radius.circular(50),
+                  topRight: Radius.circular(50),
                 ),
               ),
               child: Padding(
