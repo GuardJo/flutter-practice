@@ -4,10 +4,11 @@ import 'package:http/http.dart' as http;
 import 'package:webtoon_app/models/webtoon_model.dart';
 
 class WebtoonApiService {
-  final String _baseUrl = "https://webtoon-crawler.nomadcoders.workers.dev";
-  final String _suffixToday = "today";
+  static const String _baseUrl =
+      "https://webtoon-crawler.nomadcoders.workers.dev";
+  static const String _suffixToday = "today";
 
-  Future<List<WebtoonInfo>> printData() async {
+  static Future<List<WebtoonInfo>> getWebtoons() async {
     List<WebtoonInfo> webtoons = [];
 
     var uri = Uri.parse("$_baseUrl/$_suffixToday");
