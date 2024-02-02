@@ -25,20 +25,23 @@ class WebtoonCard extends StatelessWidget {
       },
       child: Column(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  offset: const Offset(10, -10),
-                  blurRadius: 15,
-                ),
-              ],
+          Hero(
+            tag: webtoon.id,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    offset: const Offset(10, -10),
+                    blurRadius: 15,
+                  ),
+                ],
+              ),
+              clipBehavior: Clip.hardEdge,
+              width: 200,
+              child: Image.network(webtoon.thumb),
             ),
-            clipBehavior: Clip.hardEdge,
-            width: 200,
-            child: Image.network(webtoon.thumb),
           ),
           const SizedBox(
             height: 20,
