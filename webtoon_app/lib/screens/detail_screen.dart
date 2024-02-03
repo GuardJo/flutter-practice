@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webtoon_app/models/webtoon_detail.dart';
+import 'package:webtoon_app/models/webtoon_episode.dart';
 import 'package:webtoon_app/models/webtoon_model.dart';
 import 'package:webtoon_app/services/api_service.dart';
 
@@ -17,11 +18,13 @@ class WebtoonDetailScreen extends StatefulWidget {
 
 class _WebtoonDetailScreenState extends State<WebtoonDetailScreen> {
   late final Future<WebtoonDetail> webtoonDetail;
+  late final Future<List<WebtoonEpisode>> episodes;
 
   @override
   void initState() {
     super.initState();
     webtoonDetail = WebtoonApiService.getWebtoonDetailById(widget.webtoon.id);
+    episodes = WebtoonApiService.getWebtoonEpisodeById(widget.webtoon.id);
   }
 
   @override
@@ -35,59 +38,104 @@ class _WebtoonDetailScreenState extends State<WebtoonDetailScreen> {
         shadowColor: Colors.black,
         elevation: 2,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 100),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 50,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Hero(
-                  tag: widget.webtoon.id,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          offset: const Offset(10, -10),
-                          blurRadius: 15,
-                        ),
-                      ],
-                    ),
-                    clipBehavior: Clip.hardEdge,
-                    width: 300,
-                    child: Image.network(widget.webtoon.thumb),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            FutureBuilder(
-              future: webtoonDetail,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  var data = snapshot.data!;
-                  return Column(
-                    children: [
-                      Text(data.about),
-                      const SizedBox(
-                        height: 20,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(50),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Hero(
+                    tag: widget.webtoon.id,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            offset: const Offset(10, -10),
+                            blurRadius: 15,
+                          ),
+                        ],
                       ),
-                      Text("${data.age} / ${data.genre}")
-                    ],
-                  );
-                } else {
-                  return const Text("...");
-                }
-              },
-            ),
-          ],
+                      clipBehavior: Clip.hardEdge,
+                      width: 300,
+                      child: Image.network(widget.webtoon.thumb),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              FutureBuilder(
+                future: webtoonDetail,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    var data = snapshot.data!;
+                    return Column(
+                      children: [
+                        Text(data.about),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text("${data.age} / ${data.genre}")
+                      ],
+                    );
+                  } else {
+                    return const Text("...");
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              FutureBuilder(
+                future: episodes,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    var episodeDatas = snapshot.data!;
+
+                    return Column(
+                      children: [
+                        for (var episodeData in episodeDatas)
+                          Container(
+                            margin: const EdgeInsets.only(bottom: 20),
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.1),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20)),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.black12,
+                                  blurRadius: 15,
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  episodeData.title,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const Icon(Icons.arrow_forward_ios_outlined),
+                              ],
+                            ),
+                          )
+                      ],
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
+              )
+            ],
+          ),
         ),
       ),
     );
