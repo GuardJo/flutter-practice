@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:webtoon_app/models/webtoon_detail.dart';
 import 'package:webtoon_app/models/webtoon_model.dart';
 
 class WebtoonApiService {
@@ -25,5 +26,18 @@ class WebtoonApiService {
     }
 
     return webtoons;
+  }
+
+  static Future<WebtoonDetail> getWebtoonDetailById(String webtoonId) async {
+    var uri = Uri.parse("$_baseUrl/$webtoonId");
+    var response = await http.get(uri);
+
+    if (response.statusCode == 200) {
+      dynamic content = jsonDecode(response.body);
+
+      return WebtoonDetail.fromJson(content);
+    }
+
+    throw Error();
   }
 }
