@@ -3,6 +3,7 @@ import 'package:webtoon_app/models/webtoon_detail.dart';
 import 'package:webtoon_app/models/webtoon_episode.dart';
 import 'package:webtoon_app/models/webtoon_model.dart';
 import 'package:webtoon_app/services/api_service.dart';
+import 'package:webtoon_app/widgets/eposide_widget.dart';
 
 class WebtoonDetailScreen extends StatefulWidget {
   final WebtoonInfo webtoon;
@@ -100,32 +101,9 @@ class _WebtoonDetailScreenState extends State<WebtoonDetailScreen> {
                     return Column(
                       children: [
                         for (var episodeData in episodeDatas)
-                          Container(
-                            margin: const EdgeInsets.only(bottom: 20),
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.1),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20)),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 15,
-                                ),
-                              ],
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  episodeData.title,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const Icon(Icons.arrow_forward_ios_outlined),
-                              ],
-                            ),
+                          EpisodeButton(
+                            episodeData: episodeData,
+                            webtoonId: widget.webtoon.id,
                           )
                       ],
                     );
